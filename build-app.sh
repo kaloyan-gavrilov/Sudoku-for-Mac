@@ -27,6 +27,13 @@ echo "==> Assembling app bundle"
 cp "${BIN_PATH}" "${APP_DIR}/Contents/MacOS/${APP_NAME}"
 cp "Resources/Info.plist" "${APP_DIR}/Contents/Info.plist"
 
+# Regenerate the icon if it's missing (first-time build).
+if [[ ! -f "Resources/AppIcon.icns" ]]; then
+    echo "==> Generating AppIcon.icns"
+    ./scripts/make-icon.sh
+fi
+cp "Resources/AppIcon.icns" "${APP_DIR}/Contents/Resources/AppIcon.icns"
+
 echo "==> Ad-hoc codesigning"
 codesign --force --deep --sign - "${APP_DIR}"
 

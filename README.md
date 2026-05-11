@@ -40,6 +40,16 @@ This produces a universal binary (`arm64` + `x86_64`) bundled as `dist/Sudoku.ap
 cp -R dist/Sudoku.app /Applications/
 ```
 
+### Regenerate the app icon
+
+The icon is drawn programmatically in [scripts/make-icon.swift](scripts/make-icon.swift). To re-render after tweaking:
+
+```bash
+./scripts/make-icon.sh
+```
+
+This writes `Resources/AppIcon.icns`, which `build-app.sh` copies into the bundle.
+
 ## Keyboard shortcuts
 
 | Key                       | Action                       |
